@@ -9,8 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.lec_fantasy.R
 import com.example.lec_fantasy.data.MockDatabase
-import com.example.lec_fantasy.ui.auth.MainActivity // O MainActivity, como lo hayas llamado
-import kotlinx.coroutines.MainScope
+import com.example.lec_fantasy.ui.auth.LoginActivity // O MainActivity, como lo hayas llamado
 
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
@@ -38,13 +37,14 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private fun desloguearUsuario() {
         val sharedPreferences = requireActivity().getSharedPreferences("login", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
+
         editor.putBoolean("isLoggedIn", false)
+        editor.remove("currentUser") // Borramos quién está activo ahora mismo
         editor.apply()
 
-        // Al desloguearnos, borramos la memoria de en qué liga estábamos
         MockDatabase.currentLeague = null
 
-        val intent = Intent(requireActivity(), MainActivity::class.java) // Asegúrate de que el nombre coincida con tu Activity de Login
+        val intent = Intent(requireActivity(), LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         requireActivity().finish()

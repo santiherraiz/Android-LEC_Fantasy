@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:text="Cerrar sesión"
         android:backgroundTint="#D32F2F"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

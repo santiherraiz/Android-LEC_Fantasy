@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LEC_Fantasy">
         <activity
-            android:name=".ui.auth.MainActivity"
+            android:name=".ui.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
