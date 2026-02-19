@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity() {
             val enteredPass = binding.passwordEditText.text.toString()
 
             if (enteredUser == user && enteredPass == pass) {
+                // AQUÍ: Guardamos que la sesión está iniciada
+                sharedPreferences.edit().putBoolean("isLoggedIn", true).apply()
+
                 Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
@@ -44,8 +47,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkCredentials() {
         val sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
         val user = sharedPreferences.getString("user", null)
-        if (user != null) {
+
+        // AQUÍ: Ahora comprobamos el interruptor isLoggedIn
+        if (isLoggedIn && user != null) {
             Toast.makeText(this, getString(R.string.welcome_back, user), Toast.LENGTH_SHORT).show()
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)

@@ -22,10 +22,13 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun desloguearUsuario() {
-        // 1. Borramos los datos guardados en SharedPreferences
+        // 1. Cambiamos el estado de isLoggedIn a false en SharedPreferences
         val sharedPreferences = requireActivity().getSharedPreferences("login", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        editor.clear() // Esto elimina el "user" y el "pass" guardados
+
+        // En lugar de editor.clear(), solo "apagamos" la sesión activa.
+        // El usuario y la contraseña siguen guardados.
+        editor.putBoolean("isLoggedIn", false)
         editor.apply()
 
         // 2. Redirigimos al MainActivity (Pantalla de Login)
