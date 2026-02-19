@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <EditText
+        android:id="@+id/username_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints="username"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/password_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <EditText
+        android:id="@+id/password_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:autofillHints="password"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
+        app:layout_constraintEnd_toEndOf="@+id/username_edit_text"
+        app:layout_constraintStart_toStartOf="@+id/username_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/username_edit_text" />
+
+    <Button
+        android:id="@+id/sign_in_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/sign_in"
+        app:layout_constraintBottom_toTopOf="@+id/go_to_register_text_view"
+        app:layout_constraintEnd_toEndOf="@+id/password_edit_text"
+        app:layout_constraintStart_toStartOf="@+id/password_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/password_edit_text" />
+
+    <TextView
+        android:id="@+id/go_to_register_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/go_to_register"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/sign_in_button"
+        app:layout_constraintStart_toStartOf="@+id/sign_in_button"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

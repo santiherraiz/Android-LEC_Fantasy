@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">LEC Fantasy</string>
+    <string name="leagues">Ligas</string>
+    <string name="ranking">Clasificación</string>
+    <string name="team">Equipo</string>
+    <string name="market">Mercado</string>
+    <string name="settings">Ajustes</string>
+    <string name="username">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="sign_in">Iniciar Sesión</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="welcome_back">Bienvenido de nuevo, %1$s</string>
+    <string name="login_successful">Inicio de sesión correcto</string>
+    <string name="login_failed">Usuario o contraseña incorrectos</string>
+    <string name="registration_successful">Usuario registrado correctamente</string>
+    <string name="fill_all_fields">Por favor, completa todos los campos</string>
+    <string name="go_to_register">¿No tienes cuenta? Regístrate</string>
+    <string name="go_to_login">¿Ya tienes cuenta? Inicia Sesión</string>
+</resources>
