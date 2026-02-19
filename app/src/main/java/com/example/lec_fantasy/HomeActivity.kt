@@ -14,41 +14,23 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Cargar el fragmento inicial por defecto (Ligas)
         if (savedInstanceState == null) {
-            replaceFragment(LeaguesFragment())
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LeaguesFragment()).commit()
         }
 
         binding.navView.setOnItemSelectedListener { item ->
+            var selectedFragment: Fragment? = null
             when (item.itemId) {
-                R.id.navigation_leagues -> {
-                    replaceFragment(LeaguesFragment())
-                    true
-                }
-                R.id.navigation_ranking -> {
-                    replaceFragment(RankingFragment())
-                    true
-                }
-                R.id.navigation_team -> {
-                    replaceFragment(TeamFragment())
-                    true
-                }
-                R.id.navigation_market -> {
-                    replaceFragment(MarketFragment())
-                    true
-                }
-                R.id.navigation_settings -> {
-                    replaceFragment(SettingsFragment())
-                    true
-                }
-                else -> false
+                R.id.navigation_leagues -> selectedFragment = LeaguesFragment()
+                R.id.navigation_ranking -> selectedFragment = RankingFragment()
+                R.id.navigation_team -> selectedFragment = TeamFragment()
+                R.id.navigation_market -> selectedFragment = MarketFragment()
+                R.id.navigation_settings -> selectedFragment = SettingsFragment()
             }
+            if (selectedFragment != null) {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()
+            }
+            true
         }
-    }
-
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .commit()
     }
 }
