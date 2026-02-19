@@ -1,10 +1,12 @@
-package com.example.lec_fantasy
+package com.example.lec_fantasy.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lec_fantasy.R
+import com.example.lec_fantasy.models.League
 
 class LeagueAdapter(
     private val leagues: List<League>,

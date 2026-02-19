@@ -1,10 +1,9 @@
-package com.example.lec_fantasy
+package com.example.lec_fantasy.ui.auth
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lec_fantasy.R
 import com.example.lec_fantasy.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
@@ -21,7 +20,7 @@ class RegisterActivity : AppCompatActivity() {
             val enteredPass = binding.passwordEditText.text.toString()
 
             if (enteredUser.isNotEmpty() && enteredPass.isNotEmpty()) {
-                val sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE)
+                val sharedPreferences = getSharedPreferences("login", MODE_PRIVATE)
                 with(sharedPreferences.edit()) {
                     putString("user", enteredUser)
                     putString("pass", enteredPass)

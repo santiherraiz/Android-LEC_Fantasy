@@ -1,4 +1,4 @@
-package com.example.lec_fantasy
+package com.example.lec_fantasy.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

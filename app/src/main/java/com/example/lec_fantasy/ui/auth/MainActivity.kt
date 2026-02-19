@@ -1,10 +1,12 @@
-package com.example.lec_fantasy
+package com.example.lec_fantasy.ui.auth
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lec_fantasy.ui.main.HomeActivity
+import com.example.lec_fantasy.R
+import com.example.lec_fantasy.ui.auth.RegisterActivity
 import com.example.lec_fantasy.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         checkCredentials()
 
         binding.signInButton.setOnClickListener {
-            val sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE)
+            val sharedPreferences = getSharedPreferences("login", MODE_PRIVATE)
             val user = sharedPreferences.getString("user", null)
             val pass = sharedPreferences.getString("pass", null)
             val enteredUser = binding.usernameEditText.text.toString()
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkCredentials() {
-        val sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("login", MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
         val user = sharedPreferences.getString("user", null)
 

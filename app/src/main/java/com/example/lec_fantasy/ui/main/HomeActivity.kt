@@ -1,8 +1,14 @@
-package com.example.lec_fantasy
+package com.example.lec_fantasy.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.lec_fantasy.ui.fragments.LeaguesFragment
+import com.example.lec_fantasy.ui.fragments.MarketFragment
+import com.example.lec_fantasy.R
+import com.example.lec_fantasy.ui.fragments.RankingFragment
+import com.example.lec_fantasy.ui.fragments.SettingsFragment
+import com.example.lec_fantasy.ui.fragments.TeamFragment
 import com.example.lec_fantasy.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -15,7 +21,10 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LeaguesFragment()).commit()
+            supportFragmentManager.beginTransaction().replace(
+                R.id.fragment_container,
+                LeaguesFragment()
+            ).commit()
         }
 
         binding.navView.setOnItemSelectedListener { item ->

@@ -1,22 +1,22 @@
-package com.example.lec_fantasy
+package com.example.lec_fantasy.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.lec_fantasy.databinding.FragmentMarketBinding
+import com.example.lec_fantasy.databinding.FragmentRankingBinding
 
-class MarketFragment : Fragment() {
+class RankingFragment : Fragment() {
 
-    private var _binding: FragmentMarketBinding? = null
+    private var _binding: FragmentRankingBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMarketBinding.inflate(inflater, container, false)
+        _binding = FragmentRankingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
