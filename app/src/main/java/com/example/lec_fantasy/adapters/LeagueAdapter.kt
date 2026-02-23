@@ -31,7 +31,7 @@ class LeagueAdapter(
         holder.tvParticipants.text = "${league.participants}/${league.maxParticipants}"
         holder.tvBudget.text = "Presupuesto: ${league.budgetMillions}M"
 
-        // Detectar el clic en la tarjeta
+
         holder.itemView.setOnClickListener {
             onLeagueClick(league)
         }

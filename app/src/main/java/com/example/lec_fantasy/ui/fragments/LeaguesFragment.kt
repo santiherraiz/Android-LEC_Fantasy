@@ -23,14 +23,14 @@ class LeaguesFragment : Fragment(R.layout.fragment_leagues) {
     private lateinit var rvLeagues: RecyclerView
     private lateinit var tvEmptyState: TextView
 
-    // Esta lista servirá para mostrar solo las ligas del usuario conectado
+
     private var misLigasActuales = mutableListOf<League>()
 
-    // Recuperamos el nombre del usuario que ha iniciado sesión
+
     private val currentUser: String
         get() {
             val prefs = requireActivity().getSharedPreferences("login", Context.MODE_PRIVATE)
-            // CAMBIO AQUÍ: Ahora busca "currentUser" en vez de "user"
+
             return prefs.getString("currentUser", "") ?: ""
         }
 
@@ -57,7 +57,7 @@ class LeaguesFragment : Fragment(R.layout.fragment_leagues) {
 
     private fun mostrarDialogoCrearLiga() {
         val input = EditText(requireContext())
-        input.hint = "Ej: Los Tryhards de la LEC"
+        input.hint = "Ej: Liga123"
 
         AlertDialog.Builder(requireContext())
                 .setTitle("Crear nueva liga")
@@ -68,7 +68,7 @@ class LeaguesFragment : Fragment(R.layout.fragment_leagues) {
                     if (leagueName.isNotEmpty()) {
                         val nuevaLiga = League(name = leagueName)
 
-                        // El usuario que la crea se une automáticamente
+
                         nuevaLiga.members.add(currentUser)
 
                         MockDatabase.allGlobalLeagues.add(nuevaLiga)
@@ -109,7 +109,7 @@ class LeaguesFragment : Fragment(R.layout.fragment_leagues) {
                                     )
                                     .show()
                         } else if (ligaEncontrada.members.size >= ligaEncontrada.maxParticipants) {
-                            // Comprobación de que la liga no esté llena
+
                             Toast.makeText(
                                             requireContext(),
                                             "La liga está llena",
@@ -117,7 +117,7 @@ class LeaguesFragment : Fragment(R.layout.fragment_leagues) {
                                     )
                                     .show()
                         } else {
-                            // Añadimos al usuario a los miembros de la liga
+
                             ligaEncontrada.members.add(currentUser)
                             MockDatabase.save(requireContext())
                             actualizarVista()
@@ -142,8 +142,8 @@ class LeaguesFragment : Fragment(R.layout.fragment_leagues) {
     }
 
     private fun actualizarVista() {
-        // Vaciamos la lista visual y buscamos en la base de datos global las ligas donde aparezca
-        // nuestro usuario
+
+
         misLigasActuales.clear()
         val ligasDeEsteUsuario =
                 MockDatabase.allGlobalLeagues.filter { it.members.contains(currentUser) }

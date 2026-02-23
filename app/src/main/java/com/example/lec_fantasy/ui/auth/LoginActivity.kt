@@ -1,4 +1,4 @@
-package com.example.lec_fantasy.ui.auth // Asegúrate de que el paquete es correcto
+package com.example.lec_fantasy.ui.auth
 
 import android.content.Context
 import android.content.Intent
@@ -36,11 +36,11 @@ class LoginActivity : AppCompatActivity() {
             val enteredUser = binding.usernameEditText.text.toString()
             val enteredPass = binding.passwordEditText.text.toString()
 
-            // Buscamos la contraseña guardada PARA ESE USUARIO en concreto
+
             val savedPass = sharedPreferences.getString(enteredUser, null)
 
             if (savedPass != null && savedPass == enteredPass) {
-                // AQUÍ: Guardamos que la sesión está iniciada Y quién es el usuario activo
+
                 sharedPreferences
                         .edit()
                         .putBoolean("isLoggedIn", true)

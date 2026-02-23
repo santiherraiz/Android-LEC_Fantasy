@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_leagues"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/outline_accessibility_24"
         android:title="@string/leagues" />
     <item
         android:id="@+id/navigation_ranking"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/outline_admin_panel_settings_24"
         android:title="@string/ranking" />
     <item
         android:id="@+id/navigation_team"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/outline_airline_seat_flat_24"
         android:title="@string/team" />
     <item
         android:id="@+id/navigation_market"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/outline_airplay_24"
         android:title="@string/market" />
     <item
         android:id="@+id/navigation_settings"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/outline_align_flex_center_24"
         android:title="@string/settings" />
 </menu>

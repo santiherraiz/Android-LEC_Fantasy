@@ -29,17 +29,17 @@ class RegisterActivity : AppCompatActivity() {
             val passwordIngresado = binding.passwordEditText.text.toString()
 
             if (usernameIngresado.isNotEmpty() && passwordIngresado.isNotEmpty()) {
-                // Dentro del setOnClickListener de tu botón de registro:
+
                 val sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE)
                 val editor = sharedPreferences.edit()
 
-                // En lugar de poner "user" y "pass", usamos el nombre del usuario como llave
-                // Ejemplo: Si el usuario es "123", guardará la clave "123" con su contraseña.
+
+
                 editor.putString(usernameIngresado, passwordIngresado)
                 editor.apply()
 
                 Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show()
-                finish() // Volvemos al login
+                finish()
             } else {
                 Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show()
             }

@@ -19,13 +19,13 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         val btnLogout = view.findViewById<Button>(R.id.btn_logout)
         val tvLeagueCode = view.findViewById<TextView>(R.id.tvLeagueCode)
 
-        // Si hemos entrado a alguna liga, mostramos su código
+
         val activeLeague = MockDatabase.currentLeague
         if (activeLeague != null) {
             tvLeagueCode.text = "Código de invitación a ${activeLeague.name}:\n${activeLeague.code}"
             tvLeagueCode.visibility = View.VISIBLE
         } else {
-            // Si no hemos entrado a ninguna, lo mantenemos oculto
+
             tvLeagueCode.visibility = View.GONE
         }
 
@@ -39,7 +39,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         val editor = sharedPreferences.edit()
 
         editor.putBoolean("isLoggedIn", false)
-        editor.remove("currentUser") // Borramos quién está activo ahora mismo
+        editor.remove("currentUser")
         editor.apply()
 
         MockDatabase.currentLeague = null
