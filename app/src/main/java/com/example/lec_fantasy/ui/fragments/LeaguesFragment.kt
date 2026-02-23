@@ -43,9 +43,10 @@ class LeaguesFragment : Fragment(R.layout.fragment_leagues) {
         val btnJoinLeague = view.findViewById<Button>(R.id.btnJoinLeague)
 
         rvLeagues.layoutManager = LinearLayoutManager(requireContext())
-        adapter = LeagueAdapter(misLigasActuales) { leagueSeleccionada ->
-            entrarALaLiga(leagueSeleccionada)
-        }
+        adapter =
+                LeagueAdapter(misLigasActuales) { leagueSeleccionada ->
+                    entrarALaLiga(leagueSeleccionada)
+                }
         rvLeagues.adapter = adapter
 
         actualizarVista()
@@ -59,25 +60,31 @@ class LeaguesFragment : Fragment(R.layout.fragment_leagues) {
         input.hint = "Ej: Los Tryhards de la LEC"
 
         AlertDialog.Builder(requireContext())
-            .setTitle("Crear nueva liga")
-            .setMessage("Introduce el nombre de tu liga:")
-            .setView(input)
-            .setPositiveButton("Crear") { _, _ ->
-                val leagueName = input.text.toString()
-                if (leagueName.isNotEmpty()) {
-                    val nuevaLiga = League(name = leagueName)
+                .setTitle("Crear nueva liga")
+                .setMessage("Introduce el nombre de tu liga:")
+                .setView(input)
+                .setPositiveButton("Crear") { _, _ ->
+                    val leagueName = input.text.toString()
+                    if (leagueName.isNotEmpty()) {
+                        val nuevaLiga = League(name = leagueName)
 
-                    // El usuario que la crea se une automáticamente
-                    nuevaLiga.members.add(currentUser)
+                        // El usuario que la crea se une automáticamente
+                        nuevaLiga.members.add(currentUser)
 
-                    MockDatabase.allGlobalLeagues.add(nuevaLiga)
-                    actualizarVista()
-                } else {
-                    Toast.makeText(requireContext(), "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show()
+                        MockDatabase.allGlobalLeagues.add(nuevaLiga)
+                        MockDatabase.save(requireContext())
+                        actualizarVista()
+                    } else {
+                        Toast.makeText(
+                                        requireContext(),
+                                        "El nombre no puede estar vacío",
+                                        Toast.LENGTH_SHORT
+                                )
+                                .show()
+                    }
                 }
-            }
-            .setNegativeButton("Cancelar", null)
-            .show()
+                .setNegativeButton("Cancelar", null)
+                .show()
     }
 
     private fun mostrarDialogoUnirseLiga() {
@@ -85,37 +92,61 @@ class LeaguesFragment : Fragment(R.layout.fragment_leagues) {
         input.hint = "Ej: A1B2C3"
 
         AlertDialog.Builder(requireContext())
-            .setTitle("Unirse a una liga")
-            .setMessage("Introduce el código de invitación:")
-            .setView(input)
-            .setPositiveButton("Unirse") { _, _ ->
-                val codigoIntroducido = input.text.toString().trim().uppercase()
-                val ligaEncontrada = MockDatabase.allGlobalLeagues.find { it.code == codigoIntroducido }
+                .setTitle("Unirse a una liga")
+                .setMessage("Introduce el código de invitación:")
+                .setView(input)
+                .setPositiveButton("Unirse") { _, _ ->
+                    val codigoIntroducido = input.text.toString().trim().uppercase()
+                    val ligaEncontrada =
+                            MockDatabase.allGlobalLeagues.find { it.code == codigoIntroducido }
 
-                if (ligaEncontrada != null) {
-                    if (ligaEncontrada.members.contains(currentUser)) {
-                        Toast.makeText(requireContext(), "Ya estás en esta liga", Toast.LENGTH_SHORT).show()
-                    } else if (ligaEncontrada.members.size >= ligaEncontrada.maxParticipants) {
-                        // Comprobación de que la liga no esté llena
-                        Toast.makeText(requireContext(), "La liga está llena", Toast.LENGTH_SHORT).show()
+                    if (ligaEncontrada != null) {
+                        if (ligaEncontrada.members.contains(currentUser)) {
+                            Toast.makeText(
+                                            requireContext(),
+                                            "Ya estás en esta liga",
+                                            Toast.LENGTH_SHORT
+                                    )
+                                    .show()
+                        } else if (ligaEncontrada.members.size >= ligaEncontrada.maxParticipants) {
+                            // Comprobación de que la liga no esté llena
+                            Toast.makeText(
+                                            requireContext(),
+                                            "La liga está llena",
+                                            Toast.LENGTH_SHORT
+                                    )
+                                    .show()
+                        } else {
+                            // Añadimos al usuario a los miembros de la liga
+                            ligaEncontrada.members.add(currentUser)
+                            MockDatabase.save(requireContext())
+                            actualizarVista()
+                            Toast.makeText(
+                                            requireContext(),
+                                            "¡Te has unido a ${ligaEncontrada.name}!",
+                                            Toast.LENGTH_SHORT
+                                    )
+                                    .show()
+                        }
                     } else {
-                        // Añadimos al usuario a los miembros de la liga
-                        ligaEncontrada.members.add(currentUser)
-                        actualizarVista()
-                        Toast.makeText(requireContext(), "¡Te has unido a ${ligaEncontrada.name}!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                                        requireContext(),
+                                        "Código incorrecto o liga no encontrada",
+                                        Toast.LENGTH_SHORT
+                                )
+                                .show()
                     }
-                } else {
-                    Toast.makeText(requireContext(), "Código incorrecto o liga no encontrada", Toast.LENGTH_SHORT).show()
                 }
-            }
-            .setNegativeButton("Cancelar", null)
-            .show()
+                .setNegativeButton("Cancelar", null)
+                .show()
     }
 
     private fun actualizarVista() {
-        // Vaciamos la lista visual y buscamos en la base de datos global las ligas donde aparezca nuestro usuario
+        // Vaciamos la lista visual y buscamos en la base de datos global las ligas donde aparezca
+        // nuestro usuario
         misLigasActuales.clear()
-        val ligasDeEsteUsuario = MockDatabase.allGlobalLeagues.filter { it.members.contains(currentUser) }
+        val ligasDeEsteUsuario =
+                MockDatabase.allGlobalLeagues.filter { it.members.contains(currentUser) }
         misLigasActuales.addAll(ligasDeEsteUsuario)
 
         adapter.notifyDataSetChanged()

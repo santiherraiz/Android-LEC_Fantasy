@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.lec_fantasy.R
 import com.example.lec_fantasy.data.MockDatabase
-import com.example.lec_fantasy.ui.auth.LoginActivity // O MainActivity, como lo hayas llamado
+import com.example.lec_fantasy.ui.auth.LoginActivity
 
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 

@@ -3,45 +3,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/surface_dark"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
+        <ImageView
+            android:id="@+id/ivLeagueIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_cup_bg"
+            android:src="@android:drawable/btn_star"
+            app:tint="@color/primary"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvLeagueName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Nombre de la Liga"
+            android:text="the golden league"
+            android:textColor="@color/text_primary"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tvParticipants" />
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@id/ivLeagueIcon"
+            app:layout_constraintTop_toTopOf="@id/ivLeagueIcon"
+            app:layout_constraintBottom_toBottomOf="@id/ivLeagueIcon"
+            app:layout_constraintEnd_toStartOf="@+id/tvSponsorTitle" />
+
+        <TextView
+            android:id="@+id/tvSponsorTitle"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="Heineken"
+            android:textStyle="italic"
+            android:textColor="@color/text_secondary"
+            app:layout_constraintEnd_toStartOf="@id/ivOptions"
+            app:layout_constraintTop_toTopOf="@id/ivLeagueIcon"
+            app:layout_constraintBottom_toBottomOf="@id/ivLeagueIcon"
+            android:layout_marginEnd="8dp" />
+
+        <ImageView
+            android:id="@+id/ivOptions"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_more"
+            app:tint="@color/text_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvSponsorTitle"
+            app:layout_constraintBottom_toBottomOf="@id/tvSponsorTitle" />
 
         <TextView
             android:id="@+id/tvParticipants"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1/10"
+            android:text="2/4"
+            android:textColor="@color/text_primary"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/tvLeagueName"
+            app:layout_constraintTop_toBottomOf="@id/ivLeagueIcon" />
+
+        <TextView
+            android:id="@+id/tvPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1497 PFSY"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/tvParticipants"
+            app:layout_constraintBottom_toBottomOf="@id/tvParticipants"
+            app:layout_constraintTop_toTopOf="@id/tvParticipants" />
 
         <TextView
             android:id="@+id/tvBudget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Presupuesto: 50.0M"
-            android:textSize="16sp"
-            android:textColor="#388E3C"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvLeagueName" />
+            android:text="113.535.508"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@id/ivCoin"
+            app:layout_constraintBottom_toBottomOf="@id/tvParticipants"
+            app:layout_constraintTop_toTopOf="@id/tvParticipants" />
+
+        <ImageView
+            android:id="@+id/ivCoin"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@android:drawable/ic_menu_info_details"
+            app:tint="@color/gold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tvBudget"
+            app:layout_constraintTop_toTopOf="@id/tvBudget" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

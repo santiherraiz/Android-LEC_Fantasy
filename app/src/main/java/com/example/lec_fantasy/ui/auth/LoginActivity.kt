@@ -5,7 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.lec_fantasy.R
+import com.example.lec_fantasy.data.MockDatabase
 import com.example.lec_fantasy.databinding.ActivityMainBinding
 import com.example.lec_fantasy.ui.main.HomeActivity
 
@@ -17,6 +20,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        MockDatabase.load(this)
 
         checkCredentials()
 
@@ -30,12 +41,14 @@ class LoginActivity : AppCompatActivity() {
 
             if (savedPass != null && savedPass == enteredPass) {
                 // AQUÍ: Guardamos que la sesión está iniciada Y quién es el usuario activo
-                sharedPreferences.edit()
-                    .putBoolean("isLoggedIn", true)
-                    .putString("currentUser", enteredUser)
-                    .apply()
+                sharedPreferences
+                        .edit()
+                        .putBoolean("isLoggedIn", true)
+                        .putString("currentUser", enteredUser)
+                        .apply()
 
-                Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT)
+                        .show()
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -56,7 +69,8 @@ class LoginActivity : AppCompatActivity() {
         val currentUser = sharedPreferences.getString("currentUser", null)
 
         if (isLoggedIn && currentUser != null) {
-            Toast.makeText(this, getString(R.string.welcome_back, currentUser), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.welcome_back, currentUser), Toast.LENGTH_SHORT)
+                    .show()
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()

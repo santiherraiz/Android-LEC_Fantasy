@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.lec_fantasy.R
 import com.example.lec_fantasy.databinding.ActivityRegisterBinding
 
@@ -15,6 +17,12 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         binding.signUpButton.setOnClickListener {
             val usernameIngresado = binding.usernameEditText.text.toString()
@@ -37,8 +45,6 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        binding.goToLoginTextView.setOnClickListener {
-            finish()
-        }
+        binding.goToLoginTextView.setOnClickListener { finish() }
     }
 }
